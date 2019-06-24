@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import './Login.css'
+
 const LoginForm = styled.form`
     display: flex;
     flex-direction: column;
@@ -8,7 +10,7 @@ const LoginForm = styled.form`
     width: 50%;
     background-color: white;
     height: 200px;
-    padding: 25px 5% 0px 5%;;
+    padding: 25px 1% 0px 1%;;
     border-radius: 10px;
 `
 

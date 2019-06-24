@@ -13,7 +13,7 @@ const SignUpForm = styled.form`
     width: 50%;
     background-color: white;
     height: 450px;
-    padding: 25px 5% 0px 5%;
+    padding: 25px 1% 0px 1%;
     border-radius: 10px;
 `
 
@@ -30,9 +30,6 @@ const Button = styled.button`
     background-color: #db6450;
     color: white;
     padding: 10px;
-    :hover{
-        opacity: 1;
-    }
 `
 
 class SignUp extends React.Component {

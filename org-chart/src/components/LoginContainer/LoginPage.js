@@ -23,6 +23,19 @@ const Instruction = styled.p`
     font-weight: lighter;
 `
 
+const UserType = styled(NavLink)`
+    background-color: white;
+    border-radius: 10px;
+    padding: 5px 1%;
+    margin: 10px 2% 0px 2%;
+    color: black;
+    font-weight: light;
+    :hover{
+        background-color: #36393f;
+        color: white;
+    }
+`
+
 class LoginPage extends React.Component {
     constructor(props){
         super(props);
@@ -50,10 +63,10 @@ class LoginPage extends React.Component {
         return(
              <LoginPageDiv>
                 <img src="../../imgs/logo.jpg" alt="Logo"/>
-                <TagLine>A Better Way to Make Decisions</TagLine>
+                <TagLine>A Better Way to Make Decisions.</TagLine>
                 <Instruction>*Select an option to continue.*</Instruction>
-                <NavLink className="user-type" to="/signup">New User</NavLink>
-                <NavLink className="user-type" to="/login" >Returning User</NavLink>
+                <UserType activeClassName="user-type" to="/signup">New User</UserType>
+                <UserType activeClassName="user-type" to="/login" >Returning User</UserType>
                 <Route path="/signup" component={SignUp} />
                 <Route path="/login" component={Login} />
             </LoginPageDiv>
