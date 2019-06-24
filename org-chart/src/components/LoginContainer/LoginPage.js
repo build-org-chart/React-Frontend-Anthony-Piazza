@@ -17,6 +17,12 @@ const TagLine = styled.h3`
     font-weight: lighter;
 `
 
+const Instruction = styled.p`
+    color: white;
+    margin-top: 40px;
+    font-weight: lighter;
+`
+
 class LoginPage extends React.Component {
     constructor(props){
         super(props);
@@ -45,6 +51,7 @@ class LoginPage extends React.Component {
              <LoginPageDiv>
                 <img src="../../imgs/logo.jpg" alt="Logo"/>
                 <TagLine>A Better Way to Make Decisions</TagLine>
+                <Instruction>*Select an option to continue.*</Instruction>
                 <NavLink className="user-type" to="/signup">New User</NavLink>
                 <NavLink className="user-type" to="/login" >Returning User</NavLink>
                 <Route path="/signup" component={SignUp} />
