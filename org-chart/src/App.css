@@ -1,0 +1,14 @@
+.App {
+  text-align: center;
+}
+
+nav{
+  background-color: #36393f;
+  padding: 10px;
+}
+
+a{
+  text-decoration: none;
+  color: white;
+  padding: 10px;
+}
