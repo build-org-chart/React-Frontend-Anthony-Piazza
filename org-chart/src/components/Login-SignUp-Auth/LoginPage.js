@@ -2,13 +2,13 @@ import React from 'react';
 import { Route, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
-import SignUp from '../../components/SignUp';
-import Login from '../LoginContainer/Login';
+import SignUpInitial from './SignUpInitial';
+import Login from './Login';
 import './Login.css'
 
 const LoginPageDiv = styled.div`
-    background-color: #da6351;
     height: 100vh;
+    background-color: #db6450;
 `
 
 const TagLine = styled.h3`
@@ -61,13 +61,13 @@ class LoginPage extends React.Component {
     };
     render(){
         return(
-             <LoginPageDiv>
+             <LoginPageDiv clasName="img">
                 <img src="../../imgs/logo.jpg" alt="Logo"/>
                 <TagLine>A Better Way to Make Decisions.</TagLine>
                 <Instruction>*Select an option to continue.*</Instruction>
                 <UserType activeClassName="user-type" to="/signup">New User</UserType>
                 <UserType activeClassName="user-type" to="/login" >Returning User</UserType>
-                <Route path="/signup" component={SignUp} />
+                <Route path="/signup" component={SignUpInitial} />
                 <Route path="/login" component={Login} />
             </LoginPageDiv>
         )
