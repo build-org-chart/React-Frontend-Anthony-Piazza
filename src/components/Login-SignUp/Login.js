@@ -13,7 +13,7 @@ const LoginForm = styled.form`
     margin: 50px 35% 0px 35%;
     width: 50%;
     background-color: white;
-    height: 200px;
+    height: 220px;
     padding: 25px 1% 0px 1%;;
     border-radius: 10px;
 `
@@ -74,6 +74,7 @@ class Login extends React.Component {
     handleLogin = e => {
         e.preventDefault();
         this.props.login(this.state.credentials)
+        this.props.history.push('/profile');
     };
 
     render(){
@@ -111,7 +112,7 @@ class Login extends React.Component {
                     <InputField
                     placeholder="Password"
                     onChange={this.handleChange}
-                    type='text'
+                    type='password'
                     value={this.state.password}
                     name='password'
                     />

@@ -5,9 +5,11 @@ import styled from 'styled-components';
 import CreateCompany from './CreateCompany';
 import JoinCompany from './JoinCompany';
 
-const ProfilePageDiv = styled.div`
+const AddCompanyPageDiv = styled.div`
     height: 100vh;
     background-color: #db6450;
+    padding-top: 20px;
+    color: white;
 `
 
 const Instruction = styled.p`
@@ -31,18 +33,18 @@ const UserType = styled(NavLink)`
 
 
 
-const Profile = () => {
+const CompanyPage = () => {
     return(
-        <ProfilePageDiv className="profile">
+        <AddCompanyPageDiv className="profile">
             <h1>Welcome, (username here)</h1>
             <Instruction>You aren't a part of a company yet!</Instruction>
             <Instruction>*Select an option to continue.*</Instruction>
-            <UserType activeClassName="user-type" to="/profile/create">Create a Company</UserType>
-            <UserType activeClassName="user-type" to="/profile/join" >Join a Company</UserType>
-            <Route path="/profile/create" component={CreateCompany} />
-            <Route path="/profile/join" component={JoinCompany} />
-        </ProfilePageDiv>
+            <UserType activeClassName="user-type" to="/company/create">Create a Company</UserType>
+            <UserType activeClassName="user-type" to="/company/join" >Join a Company</UserType>
+            <Route path="/company/create" component={CreateCompany} />
+            <Route path="/company/join" component={JoinCompany} />
+        </AddCompanyPageDiv>
     )
 }
 
-export default Profile;
+export default CompanyPage;
