@@ -54,7 +54,7 @@ class SignUp extends React.Component {
     super(props);
     this.state = {
       username: "",
-      name: "",
+      full_name: "",
       email: "",
       password: ""
     };
@@ -70,19 +70,19 @@ class SignUp extends React.Component {
     // this.props.history.push("/company");
     if (
       !this.state.username ||
-      !this.state.name ||
+      !this.state.full_name ||
       !this.state.email ||
       !this.state.password
     ) {
       console.log("enter the right stuff bruh!!");
     } else {
-      const newUser = {
-        username: this.state.username,
-        email: this.state.email,
-        password: this.state.password,
-        full_name: this.state.name
-      };
-      this.props.signUp(newUser);
+      // const newUser = {
+      //   username: this.state.username,
+      //   email: this.state.email,
+      //   password: this.state.password,
+      //   full_name: this.state.name
+      // };
+      this.props.signUp(this.state);
       this.props.history.push("/user/login");
     }
   };
@@ -131,8 +131,8 @@ class SignUp extends React.Component {
             placeholder="Full Name"
             onChange={this.handleChange}
             type="text"
-            value={this.state.name}
-            name="name"
+            value={this.state.full_name}
+            name="full_name"
           />
           <Input
             placeholder="Email"

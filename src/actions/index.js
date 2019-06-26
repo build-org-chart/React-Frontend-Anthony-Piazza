@@ -7,9 +7,13 @@ export const SIGNUP_START = "SIGNUP_START";
 export const SIGNUP_SUCCESS = "SIGNUP_SUCCESS";
 export const SIGNUP_FAIL = "SIGNUP_FAIL";
 
-export const CREATE_START = "CREATE_START";
-export const CREATE_SUCCESS = "CREATE_SUCCESS";
-export const CREATE_FAIL = "CREATE_FAIL";
+export const CREATE_COMPANY_START = "CREATE_COMPANY_START";
+export const CREATE_COMPANY_SUCCESS = "CREATE_COMPANY_SUCCESS";
+export const CREATE_COMPANY_FAIL = "CREATE_COMPANY_FAIL";
+
+export const CREATE_DEPARTMENT_START = "CREATE_DEPARTMENT_START";
+export const CREATE_DEPARTMENT_SUCCESS = "CREATE_DEPARTMENT_SUCCESS";
+export const CREATE_DEPARTMENT_FAIL = "CREATE_DEPARTMENT_FAIL";
 
 const URLEndpoint = "http://localhost:5000";
 
@@ -48,17 +52,34 @@ export const signUp = creds => dispatch => {
 };
 
 export const createCompany = newCompany => dispatch => {
-  dispatch({ type: CREATE_START });
+  dispatch({ type: CREATE_COMPANY_START });
   console.log(newCompany);
   return axios
     .post(`${URLEndpoint}/api/companies`, newCompany)
     .then(res => {
-      return dispatch({ type: CREATE_SUCCESS, payload: res.data });
+      return dispatch({ type: CREATE_COMPANY_SUCCESS, payload: res.data });
     })
     .catch(err => {
       console.log(err);
       return dispatch({
-        type: CREATE_FAIL
+        type: CREATE_COMPANY_FAIL
+      });
+    });
+};
+
+
+export const createDepartment = newDepartment => dispatch => {
+  dispatch({ type: CREATE_DEPARTMENT_START });
+  console.log(newDepartment);
+  return axios
+    .post(`${URLEndpoint}/api/companies`, newDepartment)
+    .then(res => {
+      return dispatch({ type: CREATE_DEPARTMENT_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      console.log(err);
+      return dispatch({
+        type: CREATE_DEPARTMENT_FAIL
       });
     });
 };
