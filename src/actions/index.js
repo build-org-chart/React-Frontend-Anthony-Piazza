@@ -11,11 +11,17 @@ const URLEndpoint = "http://localhost:5000";
 
 export const login = creds => dispatch => {
   dispatch({ type: LOGIN_START });
-  return axios.post(`${URLEndpoint}`, creds).then(res => {
-    localStorage.setItem("token", res.data.payload);
-    dispatch({ type: LOGIN_SUCCESS, payload: res.data.payload });
-    this.props.history.push("/home");
-  });
+
+  return axios
+    .post(`${URLEndpoint}/api/login`, creds)
+    .then(res => {
+      console.log(res.data);
+      localStorage.setItem("token", res.data.token);
+      dispatch({ type: LOGIN_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      console.log("SHEIIIIT");
+    });
 };
 
 export const signUp = creds => dispatch => {
