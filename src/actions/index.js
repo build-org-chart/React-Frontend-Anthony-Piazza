@@ -16,6 +16,9 @@ export const CREATE_DEPARTMENT_START = "CREATE_DEPARTMENT_START";
 export const CREATE_DEPARTMENT_SUCCESS = "CREATE_DEPARTMENT_SUCCESS";
 export const CREATE_DEPARTMENT_FAIL = "CREATE_DEPARTMENT_FAIL";
 
+export const GET_COMPANIES_START = "GET_COMPANIES_START";
+export const GET_COMPANIES_SUCCESS = "GET_COMPANIES_SUCCESS";
+
 const URLEndpoint = "http://localhost:5000";
 
 export const login = creds => dispatch => {
@@ -81,6 +84,18 @@ export const createCompany = (newCompany, userID) => dispatch => {
       return dispatch({
         type: CREATE_COMPANY_FAIL
       });
+    });
+};
+
+export const getAllCompanies = () => dispatch => {
+  dispatch({ type: GET_COMPANIES_START });
+
+  return axios
+    .get(`${URLEndpoint}/api/companies`, {
+      Authorization: localStorage.getItem("token")
+    })
+    .then(res => {
+      return dispatch({ type: GET_COMPANIES_SUCCESS, payload: res.data });
     });
 };
 
