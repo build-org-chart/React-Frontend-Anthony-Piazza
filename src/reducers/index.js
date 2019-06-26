@@ -11,7 +11,8 @@ import {
   GET_COMPANIES_SUCCESS,
   ADD_USER_TO_COMPANY_SUCCESS,
   ADD_USER_TO_COMPANY_START,
-  GETTING_EMPLOYEES_SUCCESS
+  GETTING_EMPLOYEES_SUCCESS,
+  UPDATE_EMPLOYEE_SUCCESS
 } from "../actions";
 
 const initialState = {
@@ -100,6 +101,17 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         employees: [...action.payload]
+      };
+    case UPDATE_EMPLOYEE_SUCCESS:
+      return {
+        ...state,
+        employees: state.employees.map(emp => {
+          if (emp.id === action.payload.id) {
+            return action.payload;
+          } else {
+            return emp;
+          }
+        })
       };
 
     default:

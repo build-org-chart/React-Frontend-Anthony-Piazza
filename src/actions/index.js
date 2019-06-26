@@ -25,6 +25,9 @@ export const ADD_USER_TO_COMPANY_SUCCESS = "ADD_USER_TO_COMPANY_SUCCESS";
 export const GETTING_EMPLOYEES_START = "GETTING_EMPLOYEES_START";
 export const GETTING_EMPLOYEES_SUCCESS = "GETTING_EMPLOYEES_SUCCESS";
 
+export const UPDATE_EMPLOYEE_START = "UPDATE_EMPLOYEE_START";
+export const UPDATE_EMPLOYEE_SUCCESS = "UPDATE_EMPLOYEE_SUCCESS";
+
 const URLEndpoint = "http://localhost:5000";
 
 export const login = creds => dispatch => {
@@ -119,6 +122,17 @@ export const getCompanyEmployees = company_id => dispatch => {
     let employees = res.data.filter(user => user.company_id === company_id);
 
     dispatch({ type: GETTING_EMPLOYEES_SUCCESS, payload: employees });
+  });
+};
+
+export const editEmployee = (updates, userID, history) => dispatch => {
+  console.log(updates, userID);
+  dispatch({ type: UPDATE_EMPLOYEE_START });
+
+  return axios.put(`${URLEndpoint}/api/users/${userID}`, updates).then(res => {
+    console.log(res);
+    history.push("/home");
+    return dispatch({ type: UPDATE_EMPLOYEE_SUCCESS, payload: res.data });
   });
 };
 
