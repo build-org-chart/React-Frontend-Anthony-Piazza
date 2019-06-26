@@ -10,6 +10,7 @@ export const SIGNUP_FAIL = "SIGNUP_FAIL";
 export const CREATE_COMPANY_START = "CREATE_COMPANY_START";
 export const CREATE_COMPANY_SUCCESS = "CREATE_COMPANY_SUCCESS";
 export const CREATE_COMPANY_FAIL = "CREATE_COMPANY_FAIL";
+export const CREATE_COMPANY_UPDATED_USER = "CREATE_COMPANY_UPDATED_USER";
 
 export const CREATE_DEPARTMENT_START = "CREATE_DEPARTMENT_START";
 export const CREATE_DEPARTMENT_SUCCESS = "CREATE_DEPARTMENT_SUCCESS";
@@ -51,13 +52,29 @@ export const signUp = creds => dispatch => {
     });
 };
 
-export const createCompany = newCompany => dispatch => {
+export const createCompany = (newCompany, userID) => dispatch => {
   dispatch({ type: CREATE_COMPANY_START });
   console.log(newCompany);
+
+  let myCompany = {};
+
   return axios
     .post(`${URLEndpoint}/api/companies`, newCompany)
     .then(res => {
-      return dispatch({ type: CREATE_COMPANY_SUCCESS, payload: res.data });
+      dispatch({ type: CREATE_COMPANY_SUCCESS, payload: res.data });
+      const updatedUser = {
+        company_id: res.data.id,
+        id: userID,
+        account_type: 2
+      };
+
+      //   myCompany = res.data;
+
+      return axios.put(`${URLEndpoint}/api/users/${userID}`, updatedUser);
+    })
+    .then(res => {
+      console.log("we made it!", res, myCompany);
+      return dispatch({ type: CREATE_COMPANY_UPDATED_USER, payload: res.data });
     })
     .catch(err => {
       console.log(err);
@@ -67,19 +84,18 @@ export const createCompany = newCompany => dispatch => {
     });
 };
 
-
-export const createDepartment = newDepartment => dispatch => {
-  dispatch({ type: CREATE_DEPARTMENT_START });
-  console.log(newDepartment);
-  return axios
-    .post(`${URLEndpoint}/api/companies`, newDepartment)
-    .then(res => {
-      return dispatch({ type: CREATE_DEPARTMENT_SUCCESS, payload: res.data });
-    })
-    .catch(err => {
-      console.log(err);
-      return dispatch({
-        type: CREATE_DEPARTMENT_FAIL
-      });
-    });
-};
+// export const createDepartment = newDepartment => dispatch => {
+//   dispatch({ type: CREATE_DEPARTMENT_START });
+//   console.log(newDepartment);
+//   return axios
+//     .post(`${URLEndpoint}/api/companies`, newDepartment)
+//     .then(res => {
+//       return dispatch({ type: CREATE_DEPARTMENT_SUCCESS, payload: res.data });
+//     })
+//     .catch(err => {
+//       console.log(err);
+//       return dispatch({
+//         type: CREATE_DEPARTMENT_FAIL
+//       });
+//     });
+// };
