@@ -33,7 +33,6 @@ export const login = creds => dispatch => {
   return axios
     .post(`${URLEndpoint}/api/login`, creds)
     .then(res => {
-      console.log(res.data);
       localStorage.setItem("token", res.data.token);
       dispatch({ type: LOGIN_SUCCESS, payload: res.data });
     })
@@ -43,18 +42,15 @@ export const login = creds => dispatch => {
 };
 
 export const signUp = creds => dispatch => {
-  console.log(creds);
   dispatch({ type: SIGNUP_START });
 
   return axios
     .post(`${URLEndpoint}/api/register`, creds)
     .then(res => {
-      console.log(res.data);
       // this.props.history.push("/user/login");
       return dispatch({ type: SIGNUP_SUCCESS });
     })
     .catch(err => {
-      console.log(err);
       return dispatch({
         type: SIGNUP_FAIL
       });
@@ -63,9 +59,6 @@ export const signUp = creds => dispatch => {
 
 export const createCompany = (newCompany, userID) => dispatch => {
   dispatch({ type: CREATE_COMPANY_START });
-  console.log(newCompany);
-
-  let myCompany = {};
 
   return axios
     .post(`${URLEndpoint}/api/companies`, newCompany)
@@ -80,11 +73,9 @@ export const createCompany = (newCompany, userID) => dispatch => {
       return axios.put(`${URLEndpoint}/api/users/${userID}`, updatedUser);
     })
     .then(res => {
-      console.log("we made it!", res, myCompany);
       return dispatch({ type: CREATE_COMPANY_UPDATED_USER, payload: res.data });
     })
     .catch(err => {
-      console.log(err);
       return dispatch({
         type: CREATE_COMPANY_FAIL
       });
@@ -115,7 +106,6 @@ export const addUserToCompany = (company, userID, history) => dispatch => {
   return axios
     .put(`${URLEndpoint}/api/users/${userID}`, updatedUser)
     .then(res => {
-      console.log(res.data);
       history.push("/home");
       return dispatch({ type: ADD_USER_TO_COMPANY_SUCCESS, payload: res.data });
     });
@@ -123,7 +113,6 @@ export const addUserToCompany = (company, userID, history) => dispatch => {
 };
 
 export const getCompanyEmployees = company_id => dispatch => {
-  console.log(company_id);
   dispatch({ type: GETTING_EMPLOYEES_START });
 
   return axios.get(`${URLEndpoint}/api/users`).then(res => {

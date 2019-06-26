@@ -32,50 +32,45 @@ class Org extends Component {
     this.state = {
       expandedNode: false,
       initechOrg: {
-        department_head: "Bill Lumbergh",
-        department: "HR & Communications"
-        //   children: [
-        //     {
-        //       manager: "Peter Gibbons",
-        //       title: "Manager",
-        //       children: [
-        //         {
-        //           name: "Jon Snow",
-        //           title: "Employee"
-        //         }
-        //       ]
-        //     },
-        //     {
-        //       manager: "Milton Waddams",
-        //       title: "Manager",
-        //       children: [
-        //         {
-        //           name: "Danaerys Targaryen",
-        //           title: "Employee"
-        //         }
-        //       ]
-        //     },
-        //     {
-        //       manager: "Bob Slydell",
-        //       children: [
-        //         {
-        //           name: "Bran Stark",
-        //           title: "Employee"
-        //         }
-        //       ]
-        //     },
-        //   ]
+        department_head: "",
+        department: "",
+        children: []
       }
     };
   }
 
   componentDidMount() {
-    this.props.getCompanyEmployees(this.props.company_id);
+    setTimeout(() => {
+      this.props.getCompanyEmployees(this.props.company_id);
+    }, 200);
+    setTimeout(() => {
+      console.log(this.props.employees);
+      this.props.employees.map(emp => {
+        if (emp.account_type === 2) {
+          this.setState({
+            initechOrg: {
+              ...this.state.initechOrg,
+              department_head: emp.full_name,
+              department: emp.full_name
+            }
+          });
+        } else {
+          this.setState({
+            initechOrg: {
+              ...this.state.initechOrg,
+              children: [
+                ...this.state.initechOrg.children,
+                {
+                  manager: emp.full_name,
+                  title: emp.title
+                }
+              ]
+            }
+          });
+        }
+      });
+    }, 500);
   }
-  // componentDidUpdate() {
-  //   console.log("LOOK HERE!@#!@#", this.props.employees);
-
-  // }
 
   MyNodeComponent = ({ node }) => {
     const toggleExpand = () => {
@@ -124,10 +119,15 @@ class Org extends Component {
             className="fas fa-user-minus"
           />
         </IconContainer>
+        {/* ------ */}
+        {/* ------ */}
+        {/* ------ */}
         {this.props.employees.map(employee => {
-          console.log(employee);
           return <p key={employee.id}>{employee.full_name}</p>;
         })}
+        {/* ------ */}
+        {/* ------ */}
+        {/* ------ */}
         <OrgChart
           tree={this.state.initechOrg}
           NodeComponent={this.MyNodeComponent}
