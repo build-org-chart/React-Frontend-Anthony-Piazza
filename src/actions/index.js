@@ -22,6 +22,9 @@ export const GET_COMPANIES_SUCCESS = "GET_COMPANIES_SUCCESS";
 export const ADD_USER_TO_COMPANY_START = "ADD_USER_TO_COMPANY_START";
 export const ADD_USER_TO_COMPANY_SUCCESS = "ADD_USER_TO_COMPANY_SUCCESS";
 
+export const GETTING_EMPLOYEES_START = "GETTING_EMPLOYEES_START";
+export const GETTING_EMPLOYEES_SUCCESS = "GETTING_EMPLOYEES_SUCCESS";
+
 const URLEndpoint = "http://localhost:5000";
 
 export const login = creds => dispatch => {
@@ -117,6 +120,17 @@ export const addUserToCompany = (company, userID, history) => dispatch => {
       return dispatch({ type: ADD_USER_TO_COMPANY_SUCCESS, payload: res.data });
     });
   // console.log("we in here bruh", company, userID);
+};
+
+export const getCompanyEmployees = company_id => dispatch => {
+  console.log(company_id);
+  dispatch({ type: GETTING_EMPLOYEES_START });
+
+  return axios.get(`${URLEndpoint}/api/users`).then(res => {
+    let employees = res.data.filter(user => user.company_id === company_id);
+
+    dispatch({ type: GETTING_EMPLOYEES_SUCCESS, payload: employees });
+  });
 };
 
 // export const createDepartment = newDepartment => dispatch => {
