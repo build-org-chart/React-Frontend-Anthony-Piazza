@@ -74,7 +74,7 @@ class Login extends React.Component {
     handleLogin = e => {
         e.preventDefault();
         this.props.login(this.state.credentials)
-        this.props.history.push('/profile');
+        this.props.history.push('/home');
     };
 
     render(){

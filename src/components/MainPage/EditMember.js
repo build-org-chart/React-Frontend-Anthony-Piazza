@@ -34,7 +34,7 @@ const Button = styled.button`
     color: white;
     padding: 10px;
 `
-class AddMember extends React.Component {
+class EditMember extends React.Component {
     constructor(props){
         super(props);
         this.state = {
@@ -53,8 +53,6 @@ class AddMember extends React.Component {
     };
 
     handleLogin = e => {
-        const username = this.state.username;
-        localStorage.setItem('username', username);
         this.props.history.push('/home');
     };
     render(){
@@ -117,11 +115,11 @@ class AddMember extends React.Component {
                         value={this.state.departmentHead}
                         name='departmentHead'
                     />
-                    <Button onClick={this.handleLogin}>Add Member</Button>
+                    <Button onClick={this.handleLogin}> Edit Member</Button>
                 </SignUpForm>
             </FormContainer>
         )
     }
 }
 
-export default AddMember;
+export default EditMember;
