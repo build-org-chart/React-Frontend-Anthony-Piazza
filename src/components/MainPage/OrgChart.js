@@ -61,8 +61,14 @@ class Org extends Component {
               children: [
                 ...this.state.initechOrg.children,
                 {
-                  manager: emp.full_name,
-                  title: emp.title
+                  department: emp.department ? emp.department : "no department",
+                  name: emp.full_name,
+                  title: emp.title ? emp.title : "no title",
+                  manager: emp.manager_id
+                    ? this.props.employees.filter(
+                        manager => manager.id === emp.manager_id
+                      )[0].full_name
+                    : "not assigned to a manager"
                 }
               ]
             }
@@ -119,15 +125,7 @@ class Org extends Component {
             className="fas fa-user-minus"
           />
         </IconContainer>
-        {/* ------ */}
-        {/* ------ */}
-        {/* ------ */}
-        {this.props.employees.map(employee => {
-          return <p key={employee.id}>{employee.full_name}</p>;
-        })}
-        {/* ------ */}
-        {/* ------ */}
-        {/* ------ */}
+
         <OrgChart
           tree={this.state.initechOrg}
           NodeComponent={this.MyNodeComponent}
