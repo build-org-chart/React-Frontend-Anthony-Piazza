@@ -46,7 +46,7 @@ class CreateCompany extends React.Component {
   handleCreate = e => {
     e.preventDefault();
     // console.log(this.state.company_name);
-    this.props.createCompany(this.state);
+    this.props.createCompany(this.state, this.props.userID);
     // // this.setState({ company_name: this.state.company_name });
     // this.props.history.push("/home");
   };

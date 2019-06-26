@@ -6,7 +6,12 @@ import {
   SIGNUP_FAIL,
   CREATE_COMPANY_START,
   CREATE_COMPANY_SUCCESS,
-  CREATE_COMPANY_FAIL
+  CREATE_COMPANY_FAIL,
+  CREATE_COMPANY_UPDATED_USER,
+  GET_COMPANIES_SUCCESS,
+  ADD_USER_TO_COMPANY_SUCCESS,
+  ADD_USER_TO_COMPANY_START,
+  GETTING_EMPLOYEES_SUCCESS
 } from "../actions";
 
 const initialState = {
@@ -26,6 +31,7 @@ const initialState = {
     id: null,
     name: ""
   },
+  companies: [],
   departments: [],
   employees: [],
   loggingIn: false,
@@ -66,6 +72,34 @@ const reducer = (state = initialState, action) => {
         company: {
           ...action.payload
         }
+      };
+
+    case CREATE_COMPANY_UPDATED_USER:
+      return {
+        ...state,
+        user: {
+          ...action.payload
+        }
+      };
+
+    case GET_COMPANIES_SUCCESS:
+      return {
+        ...state,
+        companies: [...action.payload]
+      };
+
+    case ADD_USER_TO_COMPANY_SUCCESS:
+      return {
+        ...state,
+        user: {
+          ...action.payload
+        }
+      };
+
+    case GETTING_EMPLOYEES_SUCCESS:
+      return {
+        ...state,
+        employees: [...action.payload]
       };
 
     default:
