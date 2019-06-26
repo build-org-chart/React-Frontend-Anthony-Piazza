@@ -8,7 +8,9 @@ import {
   CREATE_COMPANY_SUCCESS,
   CREATE_COMPANY_FAIL,
   CREATE_COMPANY_UPDATED_USER,
-  GET_COMPANIES_SUCCESS
+  GET_COMPANIES_SUCCESS,
+  ADD_USER_TO_COMPANY_SUCCESS,
+  ADD_USER_TO_COMPANY_START
 } from "../actions";
 
 const initialState = {
@@ -83,6 +85,14 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         companies: [...action.payload]
+      };
+
+    case ADD_USER_TO_COMPANY_SUCCESS:
+      return {
+        ...state,
+        user: {
+          ...action.payload
+        }
       };
 
     default:

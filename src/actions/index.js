@@ -19,6 +19,9 @@ export const CREATE_DEPARTMENT_FAIL = "CREATE_DEPARTMENT_FAIL";
 export const GET_COMPANIES_START = "GET_COMPANIES_START";
 export const GET_COMPANIES_SUCCESS = "GET_COMPANIES_SUCCESS";
 
+export const ADD_USER_TO_COMPANY_START = "ADD_USER_TO_COMPANY_START";
+export const ADD_USER_TO_COMPANY_SUCCESS = "ADD_USER_TO_COMPANY_SUCCESS";
+
 const URLEndpoint = "http://localhost:5000";
 
 export const login = creds => dispatch => {
@@ -71,8 +74,6 @@ export const createCompany = (newCompany, userID) => dispatch => {
         account_type: 2
       };
 
-      //   myCompany = res.data;
-
       return axios.put(`${URLEndpoint}/api/users/${userID}`, updatedUser);
     })
     .then(res => {
@@ -97,6 +98,25 @@ export const getAllCompanies = () => dispatch => {
     .then(res => {
       return dispatch({ type: GET_COMPANIES_SUCCESS, payload: res.data });
     });
+};
+
+export const addUserToCompany = (company, userID, history) => dispatch => {
+  dispatch({ type: ADD_USER_TO_COMPANY_START });
+
+  const updatedUser = {
+    company_id: company.id,
+    account_type: 1, // because this is an employee
+    id: userID
+  };
+
+  return axios
+    .put(`${URLEndpoint}/api/users/${userID}`, updatedUser)
+    .then(res => {
+      console.log(res.data);
+      history.push("/home");
+      return dispatch({ type: ADD_USER_TO_COMPANY_SUCCESS, payload: res.data });
+    });
+  // console.log("we in here bruh", company, userID);
 };
 
 // export const createDepartment = newDepartment => dispatch => {
