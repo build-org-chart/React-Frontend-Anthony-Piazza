@@ -3,7 +3,10 @@ import {
   LOGIN_SUCCESS,
   SIGNUP_START,
   SIGNUP_SUCCESS,
-  SIGNUP_FAIL
+  SIGNUP_FAIL,
+  CREATE_START,
+  CREATE_SUCCESS,
+  CREATE_FAIL
 } from "../actions";
 
 const initialState = {
@@ -52,6 +55,18 @@ const reducer = (state = initialState, action) => {
       return state;
     case SIGNUP_FAIL:
       return state;
+
+    case CREATE_START:
+      return state;
+    case CREATE_FAIL:
+      return state;
+    case CREATE_SUCCESS:
+      return {
+        ...state,
+        company: {
+          ...action.payload
+        }
+      };
 
     default:
       return state;

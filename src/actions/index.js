@@ -7,6 +7,10 @@ export const SIGNUP_START = "SIGNUP_START";
 export const SIGNUP_SUCCESS = "SIGNUP_SUCCESS";
 export const SIGNUP_FAIL = "SIGNUP_FAIL";
 
+export const CREATE_START = "CREATE_START";
+export const CREATE_SUCCESS = "CREATE_SUCCESS";
+export const CREATE_FAIL = "CREATE_FAIL";
+
 const URLEndpoint = "http://localhost:5000";
 
 export const login = creds => dispatch => {
@@ -39,6 +43,22 @@ export const signUp = creds => dispatch => {
       console.log(err);
       return dispatch({
         type: SIGNUP_FAIL
+      });
+    });
+};
+
+export const createCompany = newCompany => dispatch => {
+  dispatch({ type: CREATE_START });
+  console.log(newCompany);
+  return axios
+    .post(`${URLEndpoint}/api/companies`, newCompany)
+    .then(res => {
+      return dispatch({ type: CREATE_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      console.log(err);
+      return dispatch({
+        type: CREATE_FAIL
       });
     });
 };
