@@ -9,10 +9,10 @@ const HomePageDiv = styled.div`
     padding-top: 80px;
 `
 
-const HomePage = () => {
+const HomePage = props => {
     return(
         <HomePageDiv>
-            <Org />
+            <Org history={props.history} />
       </HomePageDiv>
     )
 }

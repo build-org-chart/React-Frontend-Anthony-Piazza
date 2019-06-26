@@ -44,7 +44,7 @@ class CreateCompany extends React.Component {
     handleCreate = e => {
         // e.preventDefault();
         this.setState({ company_name: this.state.company_name })
-        this.props.history.push('/profile');
+        this.props.history.push('/home');
     };    
     render(){
         return(

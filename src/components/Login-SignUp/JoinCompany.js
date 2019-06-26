@@ -50,7 +50,7 @@ class JoinCompany extends React.Component {
 
     handleJoin = e => {
         // e.preventDefault();
-        this.props.history.push('/profile');
+        this.props.history.push('/home');
     };    
     render(){
         return(
