@@ -3,6 +3,7 @@ import "./App.css";
 import { Route, NavLink } from "react-router-dom";
 import styled from 'styled-components';
 
+import Logo from "./imgs/streemly.png";
 import HomePage from "./components/MainPage/HomePage";
 import LoginPage from "./components/Login-SignUp/LoginPage";
 import CompanyPage from "./components/Login-SignUp/CompanyPage";
@@ -16,8 +17,14 @@ import EditMember from "./components/MainPage/EditMember";
 
 const Nav = styled.nav`
   display: flex;
-  align-content: center;
-  justify-content: center;
+  align-items: center;
+  justify-content: space-between;
+`
+
+const Img = styled.img`
+  height: 100px;
+  width: auto;
+  padding-left: 15px;
 `
 
 class App extends React.Component {
@@ -34,9 +41,13 @@ class App extends React.Component {
       <div className="App">
         {/* <ComponentFromWithAuthenticate /> */}
         <Nav>
-          <NavLink to="/home">Home</NavLink>
-          <NavLink to="/user">Log In</NavLink>
-          <SearchBar />
+          <Img src={Logo} alt="logo" />
+
+          <SearchBar />          
+          <div>
+            <NavLink to="/home">Home</NavLink>
+            <NavLink to="/user">Log In</NavLink>
+          </div>
         </Nav>
         {/* <Route path="/login" render={props => <LoginPage {...props}  />} /> */}
         {/* <Route path="/signup" component={SignUpInitial} /> */}
