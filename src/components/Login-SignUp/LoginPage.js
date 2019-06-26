@@ -2,15 +2,17 @@ import React from "react";
 import { Route, NavLink } from "react-router-dom";
 import styled from "styled-components";
 
-import SignUpInitial from "./SignUpInitial";
+import SignUp from "./SignUp";
 import Login from "./Login";
 import "./Login.css";
-import BGimg from "../../imgs/brickwall.jpg";
+// import BGimg from "../../imgs/brickwall.jpg";
+  // background-image: url(${BGimg});
+  // background-repeat: no-repeat;
+  // background-size: auto;
 
 const LoginPageDiv = styled.div`
   height: 100vh;
   background-color: #db6450;
-  background-image: url(${BGimg});
 `;
 
 const TagLine = styled.h3`
@@ -59,7 +61,7 @@ class LoginPage extends React.Component {
   handleLogin = e => {
     const username = this.state.username;
     localStorage.setItem("username", username);
-    window.location.reload();
+    
   };
   render() {
     return (
@@ -73,7 +75,7 @@ class LoginPage extends React.Component {
         <UserType activeClassName="user-type" to="/user/login">
           Returning User
         </UserType>
-        <Route path="/user/signup" component={SignUpInitial} />
+        <Route path="/user/signup" component={SignUp} />
         <Route path="/user/login" component={Login} />
       </LoginPageDiv>
     );

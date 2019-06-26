@@ -15,7 +15,7 @@ const SignUpForm = styled.form`
     margin: 50px 35% 0px 35%;
     width: 50%;
     background-color: white;
-    height: 350px;
+    height: 310px;
     padding: 25px 1% 0px 1%;
     border-radius: 10px;
 `
@@ -57,8 +57,6 @@ class SignUp extends React.Component {
             name:'',
             email: '',
             password: '',
-            company_type:'',
-            company:''
         }
     }
     handleChange = e => {
@@ -69,7 +67,7 @@ class SignUp extends React.Component {
         // e.preventDefault();
         const email = this.state.email;
         localStorage.setItem('email', email);
-        this.props.history.push('/profile');
+        this.props.history.push('/company');
     };
     render(){
         return(
@@ -96,13 +94,6 @@ class SignUp extends React.Component {
                             <option value="technology">Technology</option>
                             <option value="transportation">Transportation</option>
                     </Select>
-                    <Input
-                        placeholder="Company Name"
-                        onChange={this.handleChange}
-                        type='text'
-                        value={this.state.company}
-                        name='company'
-                    />
                     <Input
                         placeholder="Username"
                         onChange={this.handleChange}
