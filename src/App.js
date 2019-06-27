@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import { Route, NavLink } from "react-router-dom";
-import styled from 'styled-components';
+import styled from "styled-components";
 
 import Logo from "./imgs/streemly.png";
 import HomePage from "./components/MainPage/HomePage";
@@ -11,6 +11,7 @@ import SearchBar from "./components/MainPage/SearchBar";
 import AddMember from "./components/MainPage/AddMember";
 import DeleteMember from "./components/MainPage/DeleteMember";
 import EditMember from "./components/MainPage/EditMember";
+import AddDepartment from "./components/MainPage/AddDepartment.js";
 // import withAuthenticate from './components/Login-SignUp-Auth/withAuthenticate';
 // import SignUpInitial from "./components/Login-SignUp-Auth/SignUpInitial";
 // const ComponentFromWithAuthenticate = withAuthenticate(HomePage)(LoginPage);
@@ -19,13 +20,13 @@ const Nav = styled.nav`
   display: flex;
   align-items: center;
   justify-content: space-between;
-`
+`;
 
 const Img = styled.img`
   height: 100px;
   width: auto;
   padding-left: 15px;
-`
+`;
 
 class App extends React.Component {
   constructor() {
@@ -43,7 +44,7 @@ class App extends React.Component {
         <Nav>
           <Img src={Logo} alt="logo" />
 
-          <SearchBar />          
+          <SearchBar />
           <div>
             <NavLink to="/home">Home</NavLink>
             <NavLink to="/user">Log In</NavLink>
@@ -56,7 +57,14 @@ class App extends React.Component {
         <Route path="/user" render={props => <LoginPage {...props} />} />
         <Route path="/editmember" render={props => <EditMember {...props} />} />
         <Route path="/addmember" render={props => <AddMember {...props} />} />
-        <Route path="/deletemember" render={props => <DeleteMember {...props} />} />
+        <Route
+          path="/deletemember"
+          render={props => <DeleteMember {...props} />}
+        />
+        <Route
+          path="/adddepartment"
+          render={props => <AddDepartment {...props} />}
+        />
       </div>
     );
   }

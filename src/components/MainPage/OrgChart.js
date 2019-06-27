@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import OrgChart from "react-orgchart";
 import styled from "styled-components";
 
-import { getCompanyEmployees } from "../../actions/index.js";
+import { getCompanyEmployees, getDepartments } from "../../actions/index.js";
 
 import { connect } from "react-redux";
 
@@ -43,6 +43,11 @@ class Org extends Component {
     setTimeout(() => {
       this.props.getCompanyEmployees(this.props.company_id);
     }, 200);
+
+    setTimeout(() => {
+      this.props.getDepartments(this.props.company_id);
+    }, 250);
+
     setTimeout(() => {
       console.log(this.props.employees);
       this.props.employees.map(emp => {
@@ -61,7 +66,11 @@ class Org extends Component {
               children: [
                 ...this.state.initechOrg.children,
                 {
-                  department: emp.department ? emp.department : "no department",
+                  department: emp.department_id
+                    ? this.props.departments.filter(
+                        dept => dept.id === emp.department_id
+                      )[0].name
+                    : "no department",
                   name: emp.full_name,
                   title: emp.title ? emp.title : "no title",
                   manager: emp.manager_id
@@ -114,6 +123,10 @@ class Org extends Component {
     this.props.history.push("/deletemember");
   };
 
+  handleAddDepartment = e => {
+    this.props.history.push("/adddepartment");
+  };
+
   render() {
     return (
       <div id="initechOrgChart">
@@ -123,6 +136,10 @@ class Org extends Component {
           <Icon
             onClick={this.handleDeleteMember}
             className="fas fa-user-minus"
+          />
+          <Icon
+            onClick={this.handleAddDepartment}
+            className="fas fa-user-plus"
           />
         </IconContainer>
 
@@ -138,11 +155,12 @@ class Org extends Component {
 const mapStateToProps = state => {
   return {
     company_id: state.user.company_id,
-    employees: state.employees
+    employees: state.employees,
+    departments: state.departments
   };
 };
 
 export default connect(
   mapStateToProps,
-  { getCompanyEmployees }
+  { getCompanyEmployees, getDepartments }
 )(Org);

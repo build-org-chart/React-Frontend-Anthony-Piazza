@@ -12,7 +12,8 @@ import {
   ADD_USER_TO_COMPANY_SUCCESS,
   ADD_USER_TO_COMPANY_START,
   GETTING_EMPLOYEES_SUCCESS,
-  UPDATE_EMPLOYEE_SUCCESS
+  UPDATE_EMPLOYEE_SUCCESS,
+  GET_DEPTS_SUCCESS
 } from "../actions";
 
 const initialState = {
@@ -114,6 +115,11 @@ const reducer = (state = initialState, action) => {
         })
       };
 
+    case GET_DEPTS_SUCCESS:
+      return {
+        ...state,
+        departments: [...action.payload]
+      };
     default:
       return state;
   }

@@ -28,6 +28,15 @@ export const GETTING_EMPLOYEES_SUCCESS = "GETTING_EMPLOYEES_SUCCESS";
 export const UPDATE_EMPLOYEE_START = "UPDATE_EMPLOYEE_START";
 export const UPDATE_EMPLOYEE_SUCCESS = "UPDATE_EMPLOYEE_SUCCESS";
 
+export const ADD_EMPLOYEE_START = "ADD_EMPLOYEE_START";
+export const ADD_EMPLOYEE_SUCCESS = "ADD_EMPLOYEE_SUCCESS";
+
+export const REMOVE_EMPLOYEE_START = "REMOVE_EMPLOYEE_START";
+export const REMOVE_EMPLOYEE_SUCCESS = "REMOVE_EMPLOYEE_SUCCESS";
+
+export const GET_DEPTS_START = "GET_DEPTS_START";
+export const GET_DEPTS_SUCCESS = "GET_DEPTS_SUCCESS";
+
 const URLEndpoint = "http://localhost:5000";
 
 export const login = creds => dispatch => {
@@ -136,18 +145,67 @@ export const editEmployee = (updates, userID, history) => dispatch => {
   });
 };
 
-// export const createDepartment = newDepartment => dispatch => {
-//   dispatch({ type: CREATE_DEPARTMENT_START });
-//   console.log(newDepartment);
-//   return axios
-//     .post(`${URLEndpoint}/api/companies`, newDepartment)
-//     .then(res => {
-//       return dispatch({ type: CREATE_DEPARTMENT_SUCCESS, payload: res.data });
-//     })
-//     .catch(err => {
-//       console.log(err);
-//       return dispatch({
-//         type: CREATE_DEPARTMENT_FAIL
-//       });
-//     });
-// };
+export const addEmployeeToCompany = (employee, history) => dispatch => {
+  console.log(employee);
+  dispatch({ type: ADD_EMPLOYEE_START });
+
+  return axios.post(`${URLEndpoint}/api/users`, employee).then(res => {
+    history.push("/home");
+    dispatch({ type: ADD_EMPLOYEE_SUCCESS });
+  });
+};
+
+export const removeMember = (memberID, history) => dispatch => {
+  console.log(memberID);
+  dispatch({ type: REMOVE_EMPLOYEE_START });
+
+  const toUpdate = {
+    id: memberID,
+    account_type: 0,
+    company_id: null
+  };
+
+  return axios
+    .put(`${URLEndpoint}/api/users/${memberID}`, toUpdate)
+    .then(res => {
+      history.push("/home");
+      dispatch({ type: REMOVE_EMPLOYEE_SUCCESS });
+    });
+};
+
+export const createDepartment = (department, history) => dispatch => {
+  dispatch({ type: CREATE_DEPARTMENT_START });
+  // console.log(department, history);
+
+  return axios
+    .post(`${URLEndpoint}/api/departments`, department)
+    .then(res => {
+      // console.log(res.data);
+      dispatch({ type: CREATE_DEPARTMENT_SUCCESS, payload: res.data });
+
+      return axios
+        .put(`${URLEndpoint}/api/users/${res.data.department_head}`, {
+          id: res.data.department_head,
+          department_id: res.data.id
+        })
+        .then(res => {
+          console.log(res);
+        });
+    })
+    .catch(err => {
+      console.log(err);
+      return dispatch({
+        type: CREATE_DEPARTMENT_FAIL
+      });
+    });
+};
+
+export const getDepartments = companyID => dispatch => {
+  console.log("getting departments...", companyID);
+  dispatch({ type: GET_DEPTS_START });
+
+  return axios.get(`${URLEndpoint}/api/companies/${companyID}`).then(res => {
+    console.log(res.data.departments);
+    dispatch({ type: GET_DEPTS_SUCCESS, payload: res.data.departments });
+  });
+};
