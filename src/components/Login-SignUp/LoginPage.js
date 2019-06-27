@@ -12,8 +12,8 @@ const LoginPageDiv = styled.div`
   height: 100vh;
   background-image: url(${BGimg});
   background-repeat: no-repeat;
-  background-position: bottom;
-  background-height: 200vh;
+  background-position: center;
+  background-size: 100%;
 `;
 
 const TagLine = styled.h3`

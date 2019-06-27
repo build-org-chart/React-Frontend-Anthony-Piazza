@@ -12,9 +12,8 @@ const FormContainer = styled.div`
 const SignUpForm = styled.form`
   display: flex;
   flex-direction: column;
-  margin: 50px 35% 0px 35%;
-  width: 50%;
-  background-color: white;
+  width: 100%;
+  margin: 0px 10%;
   height: 310px;
   padding: 25px 1% 0px 1%;
   border-radius: 10px;
@@ -43,10 +42,15 @@ const Select = styled.select`
 const Button = styled.button`
   margin-top: 10px;
   border-radius: 10px;
-  background-color: #db6450;
+  background-color: #36393f;
+  border: 1px solid white;
   color: white;
   padding: 10px;
   border: 1px solid grey;
+  :hover{
+    background-color: #db6450;
+    color: white;
+  }
 `;
 
 class SignUp extends React.Component {
