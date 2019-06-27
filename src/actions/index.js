@@ -189,6 +189,7 @@ export const createDepartment = (department, history) => dispatch => {
           department_id: res.data.id
         })
         .then(res => {
+          history.push("/home");
           console.log(res);
         });
     })

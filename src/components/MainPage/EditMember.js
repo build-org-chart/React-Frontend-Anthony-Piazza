@@ -60,7 +60,8 @@ class EditMember extends React.Component {
       //   department: "",
       password: "",
       id: null,
-      manager_id: null
+      manager_id: null,
+      department_id: null
     };
   }
   handleChange = e => {
@@ -86,6 +87,10 @@ class EditMember extends React.Component {
     }
     if (this.state.manager_id !== null) {
       updatedUser["manager_id"] = parseInt(this.state.manager_id);
+    }
+
+    if (this.state.department_id !== null) {
+      updatedUser["department_id"] = parseInt(this.state.department_id);
     }
 
     // console.log(updatedUser, `and edit user with id of ${this.state.id}`);
@@ -172,6 +177,23 @@ class EditMember extends React.Component {
             value={this.state.department}
             name="department"
           /> */}
+          <Select
+            required
+            name="department_id"
+            value={this.state.department_id}
+            onChange={this.handleChange}
+          >
+            <option value="" disabled selected>
+              Assign to Department...
+            </option>
+            {this.props.departments.map(dept => {
+              return (
+                <option name="department_id" value={dept.id} key={dept.id}>
+                  {dept.name}
+                </option>
+              );
+            })}
+          </Select>
 
           <Button onClick={this.handleEdit}> Edit Member</Button>
         </SignUpForm>
@@ -183,7 +205,8 @@ class EditMember extends React.Component {
 const mapStateToProps = state => {
   return {
     employees: state.employees,
-    company_id: state.user.company_id
+    company_id: state.user.company_id,
+    departments: state.departments
   };
 };
 export default connect(
