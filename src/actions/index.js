@@ -43,7 +43,7 @@ export const GET_REQUESTS_SUCCESS = "GET_REQUESTS_SUCCESS";
 export const SEND_REQUESTS_START = "SEND_REQUESTS_START";
 export const SEND_REQUESTS_SUCCESS = "SEND_REQUESTS_SUCCESS";
 
-const URLEndpoint = "http://localhost:5000";
+const URLEndpoint = "https://org-chart-backend-temp-deploy.herokuapp.com";
 
 export const login = creds => dispatch => {
   dispatch({ type: LOGIN_START });

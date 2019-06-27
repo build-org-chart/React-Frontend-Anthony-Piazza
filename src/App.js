@@ -24,10 +24,11 @@ const Nav = styled.nav`
 `;
 
 const Img = styled.img`
-  height: 100px;
+  height: 70px;
   width: auto;
   padding-left: 15px;
 `;
+
 
 class App extends React.Component {
   constructor() {
@@ -74,8 +75,8 @@ class App extends React.Component {
 
           <SearchBar userSearch={this.userSearch} />
           <div>
-            <NavLink to="/home">Home</NavLink>
-            <NavLink to="/user">Log In</NavLink>
+            <NavLink activeClassName="active" to="/home">Home</NavLink>
+            <NavLink activeClassName="active" to="/user">Log In</NavLink>
           </div>
         </Nav>
         {/* <Route path="/login" render={props => <LoginPage {...props}  />} /> */}
