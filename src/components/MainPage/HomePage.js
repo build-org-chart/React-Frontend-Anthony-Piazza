@@ -17,7 +17,11 @@ const HomePage = props => {
       {props.account_type === 0 ? (
         <CompanyPage />
       ) : (
-        <Org history={props.history} />
+        <Org 
+          includedInSearch={props.includedInSearch} 
+          userSearch={props.userSearch} 
+          history={props.history} 
+        />
       )}
     </HomePageDiv>
   );
