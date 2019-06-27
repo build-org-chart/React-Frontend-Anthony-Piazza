@@ -4,6 +4,7 @@
     padding: 15px 5% 15px 5%;
     width: 50%;
     display: inline-block;
+    animation: shadow-drop-center 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 }
 
 .expandedinitechNode {
@@ -21,7 +22,8 @@
 }
 
 .orgNodeChildGroup{
-    width: 80%;
+    width: 100%;
+    border-radius: 10px;
 }
 
 #initechOrgChart .nodeLineBorderTop {

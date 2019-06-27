@@ -36,7 +36,7 @@ const UserType = styled(NavLink)`
 const CompanyPage = () => {
     return(
         <AddCompanyPageDiv className="profile">
-            <h1>Welcome, (username here)</h1>
+            <h1>Welcome!</h1>
             <Instruction>You aren't a part of a company yet!</Instruction>
             <Instruction>*Select an option to continue.*</Instruction>
             <UserType activeClassName="user-type" to="/company/create">Create a Company</UserType>

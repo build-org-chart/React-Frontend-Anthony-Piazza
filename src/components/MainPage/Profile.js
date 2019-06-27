@@ -10,8 +10,8 @@ const ProfilePageDiv = styled.div`
 
 const Profile = () => {
     return(
-        <ProfilePageDiv className="profile">
-            <h1>Welcome, (username here) to your profile. </h1>
+        <ProfilePageDiv>
+            <h1>Welcome, (username here) to your profile. fjsdhfkjdhsfsk</h1>
         </ProfilePageDiv>
     )
 }
