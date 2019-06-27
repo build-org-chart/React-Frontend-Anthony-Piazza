@@ -99,6 +99,7 @@ const reducer = (state = initialState, action) => {
       };
 
     case GETTING_EMPLOYEES_SUCCESS:
+      console.log("HERERERER", action.payload);
       return {
         ...state,
         employees: [...action.payload]
@@ -116,6 +117,7 @@ const reducer = (state = initialState, action) => {
       };
 
     case GET_DEPTS_SUCCESS:
+      console.log("DEPARTMENTES", action.payload);
       return {
         ...state,
         departments: [...action.payload]
