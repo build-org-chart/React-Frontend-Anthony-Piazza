@@ -4,6 +4,7 @@ import styled from "styled-components";
 import CompanyPage from "../Login-SignUp/CompanyPage.js";
 import { connect } from "react-redux";
 import { sendRequest } from "../../actions";
+import { colors } from "../../styles";
 
 const HomePageDiv = styled.div`
   height: 100vh;
