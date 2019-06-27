@@ -37,6 +37,12 @@ export const REMOVE_EMPLOYEE_SUCCESS = "REMOVE_EMPLOYEE_SUCCESS";
 export const GET_DEPTS_START = "GET_DEPTS_START";
 export const GET_DEPTS_SUCCESS = "GET_DEPTS_SUCCESS";
 
+export const GET_REQUESTS_START = "GET_REQUESTS_START";
+export const GET_REQUESTS_SUCCESS = "GET_REQUESTS_SUCCESS";
+
+export const SEND_REQUESTS_START = "SEND_REQUESTS_START";
+export const SEND_REQUESTS_SUCCESS = "SEND_REQUESTS_SUCCESS";
+
 const URLEndpoint = "http://localhost:5000";
 
 export const login = creds => dispatch => {
@@ -208,5 +214,22 @@ export const getDepartments = companyID => dispatch => {
   return axios.get(`${URLEndpoint}/api/companies/${companyID}`).then(res => {
     console.log(res.data.departments);
     dispatch({ type: GET_DEPTS_SUCCESS, payload: res.data.departments });
+  });
+};
+
+export const getRequests = () => dispatch => {
+  dispatch({ type: GET_REQUESTS_START });
+
+  return axios.get(`${URLEndpoint}/api/requests`).then(res => {
+    dispatch({ type: GET_REQUESTS_SUCCESS, payload: res.data });
+  });
+};
+
+export const sendRequest = request => dispatch => {
+  dispatch({ type: SEND_REQUESTS_START });
+
+  return axios.post(`${URLEndpoint}/api/requests`, request).then(res => {
+    console.log(res.data);
+    dispatch({ type: SEND_REQUESTS_SUCCESS });
   });
 };

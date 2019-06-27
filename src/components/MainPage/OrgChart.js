@@ -2,7 +2,11 @@ import React, { Component } from "react";
 import OrgChart from "react-orgchart";
 import styled from "styled-components";
 
-import { getCompanyEmployees, getDepartments } from "../../actions/index.js";
+import {
+  getCompanyEmployees,
+  getDepartments,
+  getRequests
+} from "../../actions/index.js";
 
 import { connect } from "react-redux";
 
@@ -86,6 +90,10 @@ class Org extends Component {
         }
       });
     }, 500);
+
+    setTimeout(() => {
+      this.props.getRequests();
+    }, 600);
   }
 
   MyNodeComponent = ({ node }) => {
@@ -165,5 +173,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getCompanyEmployees, getDepartments }
+  { getCompanyEmployees, getDepartments, getRequests }
 )(Org);
