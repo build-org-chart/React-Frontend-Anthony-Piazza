@@ -13,7 +13,8 @@ import {
   ADD_USER_TO_COMPANY_START,
   GETTING_EMPLOYEES_SUCCESS,
   UPDATE_EMPLOYEE_SUCCESS,
-  GET_DEPTS_SUCCESS
+  GET_DEPTS_SUCCESS,
+  GET_REQUESTS_SUCCESS
 } from "../actions";
 
 const initialState = {
@@ -36,6 +37,29 @@ const initialState = {
   companies: [],
   departments: [],
   employees: [],
+  requests: [
+    {
+      sender_id: 13,
+      recipient_id: 15,
+      subject: "Test Subject...",
+      content:
+        "lorem this is some fake text to see what requests look like coming innnnnnnnn?!@?#?!@#?!?#!@?# "
+    },
+    {
+      sender_id: 20,
+      recipient_id: 21,
+      subject: "Test Subject...",
+      content:
+        "lorem this is some fake text to see what requests look like coming innnnnnnnn?!@?#?!@#?!?#!@?# "
+    },
+    {
+      sender_id: 21,
+      recipient_id: 15,
+      subject: "Test Subject...",
+      content:
+        "lorem this is some fake text to see what requests look like coming innnnnnnnn?!@?#?!@#?!?#!@?# "
+    }
+  ],
   loggingIn: false,
   error: "",
   token: localStorage.getItem("token")
@@ -121,6 +145,23 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         departments: [...action.payload]
+      };
+
+    case GET_REQUESTS_SUCCESS:
+      const employeeIDs = state.employees.map(emp => emp.id);
+
+      const companyRequests = action.payload
+        .map(request => {
+          if (employeeIDs.includes(request.sender_id)) {
+            return request;
+          }
+        })
+        .filter(r => r !== undefined)
+        .filter(r => r.recipient_id === state.user.id);
+
+      return {
+        ...state,
+        requests: [...companyRequests]
       };
     default:
       return state;
