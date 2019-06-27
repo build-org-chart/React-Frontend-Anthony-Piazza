@@ -32,10 +32,15 @@ const InputField = styled.input`
 const Button = styled.button`
   margin-top: 10px;
   border-radius: 10px;
-  background-color: #db6450;
+  background-color: #36393f;
+  border: 1px solid white;
   color: white;
   padding: 10px;
   border: 1px solid grey;
+  :hover{
+    background-color: #db6450;
+    color: white;
+  }
 `;
 
 class Login extends React.Component {
