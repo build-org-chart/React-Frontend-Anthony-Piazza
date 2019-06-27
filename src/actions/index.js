@@ -72,8 +72,10 @@ export const signUp = creds => dispatch => {
 export const createCompany = (newCompany, userID) => dispatch => {
   dispatch({ type: CREATE_COMPANY_START });
 
+  const token = localStorage.getItem("token");
+
   return axios
-    .post(`${URLEndpoint}/api/companies`, newCompany)
+    .post(`${URLEndpoint}/api/companies`, newCompany, { Authorization: token })
     .then(res => {
       dispatch({ type: CREATE_COMPANY_SUCCESS, payload: res.data });
       const updatedUser = {
@@ -96,10 +98,10 @@ export const createCompany = (newCompany, userID) => dispatch => {
 
 export const getAllCompanies = () => dispatch => {
   dispatch({ type: GET_COMPANIES_START });
-
+  const token = localStorage.getItem("token");
   return axios
     .get(`${URLEndpoint}/api/companies`, {
-      Authorization: localStorage.getItem("token")
+      Authorization: token
     })
     .then(res => {
       return dispatch({ type: GET_COMPANIES_SUCCESS, payload: res.data });
@@ -108,7 +110,7 @@ export const getAllCompanies = () => dispatch => {
 
 export const addUserToCompany = (company, userID, history) => dispatch => {
   dispatch({ type: ADD_USER_TO_COMPANY_START });
-
+  const token = localStorage.getItem("token");
   const updatedUser = {
     company_id: company.id,
     account_type: 1, // because this is an employee
@@ -116,7 +118,9 @@ export const addUserToCompany = (company, userID, history) => dispatch => {
   };
 
   return axios
-    .put(`${URLEndpoint}/api/users/${userID}`, updatedUser)
+    .put(`${URLEndpoint}/api/users/${userID}`, updatedUser, {
+      Authorization: token
+    })
     .then(res => {
       history.push("/home");
       return dispatch({ type: ADD_USER_TO_COMPANY_SUCCESS, payload: res.data });
@@ -126,39 +130,47 @@ export const addUserToCompany = (company, userID, history) => dispatch => {
 
 export const getCompanyEmployees = company_id => dispatch => {
   dispatch({ type: GETTING_EMPLOYEES_START });
+  const token = localStorage.getItem("token");
+  return axios
+    .get(`${URLEndpoint}/api/users`, { Authorization: token })
+    .then(res => {
+      let employees = res.data.filter(user => user.company_id === company_id);
 
-  return axios.get(`${URLEndpoint}/api/users`).then(res => {
-    let employees = res.data.filter(user => user.company_id === company_id);
-
-    dispatch({ type: GETTING_EMPLOYEES_SUCCESS, payload: employees });
-  });
+      dispatch({ type: GETTING_EMPLOYEES_SUCCESS, payload: employees });
+    });
 };
 
 export const editEmployee = (updates, userID, history) => dispatch => {
   console.log(updates, userID);
   dispatch({ type: UPDATE_EMPLOYEE_START });
-
-  return axios.put(`${URLEndpoint}/api/users/${userID}`, updates).then(res => {
-    console.log(res);
-    history.push("/home");
-    return dispatch({ type: UPDATE_EMPLOYEE_SUCCESS, payload: res.data });
-  });
+  const token = localStorage.getItem("token");
+  return axios
+    .put(`${URLEndpoint}/api/users/${userID}`, updates, {
+      Authorization: token
+    })
+    .then(res => {
+      console.log(res);
+      history.push("/home");
+      return dispatch({ type: UPDATE_EMPLOYEE_SUCCESS, payload: res.data });
+    });
 };
 
 export const addEmployeeToCompany = (employee, history) => dispatch => {
   console.log(employee);
   dispatch({ type: ADD_EMPLOYEE_START });
-
-  return axios.post(`${URLEndpoint}/api/users`, employee).then(res => {
-    history.push("/home");
-    dispatch({ type: ADD_EMPLOYEE_SUCCESS });
-  });
+  const token = localStorage.getItem("token");
+  return axios
+    .post(`${URLEndpoint}/api/users`, employee, { Authorization: token })
+    .then(res => {
+      history.push("/home");
+      dispatch({ type: ADD_EMPLOYEE_SUCCESS });
+    });
 };
 
 export const removeMember = (memberID, history) => dispatch => {
   console.log(memberID);
   dispatch({ type: REMOVE_EMPLOYEE_START });
-
+  const token = localStorage.getItem("token");
   const toUpdate = {
     id: memberID,
     account_type: 0,
@@ -166,7 +178,9 @@ export const removeMember = (memberID, history) => dispatch => {
   };
 
   return axios
-    .put(`${URLEndpoint}/api/users/${memberID}`, toUpdate)
+    .put(`${URLEndpoint}/api/users/${memberID}`, toUpdate, {
+      Authorization: token
+    })
     .then(res => {
       history.push("/home");
       dispatch({ type: REMOVE_EMPLOYEE_SUCCESS });
@@ -176,9 +190,11 @@ export const removeMember = (memberID, history) => dispatch => {
 export const createDepartment = (department, history) => dispatch => {
   dispatch({ type: CREATE_DEPARTMENT_START });
   // console.log(department, history);
-
+  const token = localStorage.getItem("token");
   return axios
-    .post(`${URLEndpoint}/api/departments`, department)
+    .post(`${URLEndpoint}/api/departments`, department, {
+      Authorization: token
+    })
     .then(res => {
       // console.log(res.data);
       dispatch({ type: CREATE_DEPARTMENT_SUCCESS, payload: res.data });
@@ -204,9 +220,11 @@ export const createDepartment = (department, history) => dispatch => {
 export const getDepartments = companyID => dispatch => {
   console.log("getting departments...", companyID);
   dispatch({ type: GET_DEPTS_START });
-
-  return axios.get(`${URLEndpoint}/api/companies/${companyID}`).then(res => {
-    console.log(res.data.departments);
-    dispatch({ type: GET_DEPTS_SUCCESS, payload: res.data.departments });
-  });
+  const token = localStorage.getItem("token");
+  return axios
+    .get(`${URLEndpoint}/api/companies/${companyID}`, { Authorization: token })
+    .then(res => {
+      console.log(res.data.departments);
+      dispatch({ type: GET_DEPTS_SUCCESS, payload: res.data.departments });
+    });
 };
