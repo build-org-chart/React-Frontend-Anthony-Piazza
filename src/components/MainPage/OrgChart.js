@@ -49,7 +49,7 @@ class Org extends Component {
     }, 250);
 
     setTimeout(() => {
-      console.log(this.props.employees);
+      // console.log(this.props.employees);
       this.props.employees.map(emp => {
         if (emp.account_type === 2) {
           this.setState({
@@ -73,6 +73,7 @@ class Org extends Component {
                     : "no department",
                   name: emp.full_name,
                   title: emp.title ? emp.title : "no title",
+                  id: emp.id,
                   manager: emp.manager_id
                     ? this.props.employees.filter(
                         manager => manager.id === emp.manager_id
@@ -95,7 +96,9 @@ class Org extends Component {
       <div className="rando">
         <div
           className={
-            this.props.includedInSearch ? "expandedinitechNode" : "initechNode"
+            this.props.searchMemberID === node.id
+              ? "expandedinitechNode"
+              : "initechNode"
           }
           // onClick={() => toggleExpand()}
         >

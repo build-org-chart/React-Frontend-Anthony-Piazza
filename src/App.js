@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import { Route, NavLink } from "react-router-dom";
 import styled from "styled-components";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 import Logo from "./imgs/streemly.png";
 import HomePage from "./components/MainPage/HomePage";
@@ -35,19 +35,34 @@ class App extends React.Component {
     this.state = {
       members: [],
       error: [],
-      includedInSearch: false
+      searchMemberID: null
     };
   }
-  
-  userSearch = (e) => {
+
+  userSearch = e => {
     e.preventDefault();
-    this.props.user.filter(searchUser => {
-      if(searchUser.full_name.includes(e.target.value)){
-        this.setState({ includedInSearch: true })
-      }else{
-        this.setState({ includedInSearch: false })
+    this.props.employees.filter(employee => {
+      if (
+        employee.full_name.toUpperCase().includes(e.target.value.toUpperCase())
+      ) {
+        this.setState({ searchMemberID: employee.id });
+      } else {
+        // this.setState({ includedInSearch: false })
       }
-    })
+    });
+
+    this.props.departments.filter(dept => {
+      if (dept.name.toUpperCase().includes(e.target.value.toUpperCase())) {
+        this.setState({ searchMemberID: dept.department_head });
+      } else {
+        // this.setState({ includedInSearch: false })
+      }
+    });
+
+    if (e.target.value === "") {
+      this.setState({ searchMemberID: null });
+    }
+    console.log(e.target.value);
   };
 
   render() {
@@ -65,28 +80,42 @@ class App extends React.Component {
         </Nav>
         {/* <Route path="/login" render={props => <LoginPage {...props}  />} /> */}
         {/* <Route path="/signup" component={SignUpInitial} /> */}
-        <Route exact path="/home" render={props => (
-          <HomePage 
-            {...props} 
-            includedInSearch={this.state.includedInSearch} 
-            userSearch={this.userSearch} 
-          />
-        )} />
+        <Route
+          exact
+          path="/home"
+          render={props => (
+            <HomePage
+              {...props}
+              searchMemberID={this.state.searchMemberID}
+              userSearch={this.userSearch}
+            />
+          )}
+        />
         <Route path="/company" render={props => <CompanyPage {...props} />} />
         <Route path="/user" render={props => <LoginPage {...props} />} />
         <Route path="/editmember" render={props => <EditMember {...props} />} />
         <Route path="/addmember" render={props => <AddMember {...props} />} />
-        <Route path="/deletemember" render={props => <DeleteMember {...props} />} />
-        <Route path="/adddepartment" render={props => <AddDepartment {...props} />}/>
+        <Route
+          path="/deletemember"
+          render={props => <DeleteMember {...props} />}
+        />
+        <Route
+          path="/adddepartment"
+          render={props => <AddDepartment {...props} />}
+        />
       </div>
     );
   }
 }
 
 const mapStateToProps = state => {
-  return{
-    user: state.user
-  }
-}
+  return {
+    employees: state.employees,
+    departments: state.departments
+  };
+};
 
-export default connect(mapStateToProps, {} )(App);
+export default connect(
+  mapStateToProps,
+  {}
+)(App);
