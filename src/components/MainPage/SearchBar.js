@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import {connect} from 'react-redux';
 
 const Header = styled.div`
   margin-left: 10%;
@@ -18,11 +19,11 @@ const Input = styled.input`
   font-size: .8rem;
 `;
 
-const SearchBar = props => {
+const SearchBar = props => { 
   return (
     <Header>
       <Input
-        onChange={props.filterSearch}
+        onChange={props.userSearch}
         type="text"
         placeholder="&#128269; Search"
         name="search"
@@ -31,4 +32,10 @@ const SearchBar = props => {
   );
 }
 
-export default SearchBar;
+const mapStateToProps = state => {
+  return {
+    user: state.user
+  }
+}
+
+export default connect(mapStateToProps, {} )(SearchBar);

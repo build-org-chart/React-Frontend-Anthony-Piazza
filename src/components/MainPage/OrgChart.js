@@ -27,8 +27,8 @@ const IconContainer = styled.div`
 `;
 
 class Org extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       expandedNode: false,
       initechOrg: {
@@ -88,16 +88,16 @@ class Org extends Component {
   }
 
   MyNodeComponent = ({ node }) => {
-    const toggleExpand = () => {
-      this.setState({ expandedNode: !this.state.expandedNode });
-    };
+    // const toggleExpand = () => {
+    //   this.setState({ expandedNode: !this.state.expandedNode });
+    // };
     return (
       <div className="rando">
         <div
           className={
-            this.state.expandedNode ? "expandedinitechNode" : "initechNode"
+            this.props.includedInSearch ? "expandedinitechNode" : "initechNode"
           }
-          onClick={() => toggleExpand()}
+          // onClick={() => toggleExpand()}
         >
           {node.department}
           <div>{node.name}</div>
