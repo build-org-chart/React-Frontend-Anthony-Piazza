@@ -4,13 +4,16 @@ import styled from "styled-components";
 import CompanyPage from "../Login-SignUp/CompanyPage.js";
 import { connect } from "react-redux";
 import { sendRequest } from "../../actions";
+import BGimg from "../../imgs/triangles.jpg";
 
 const HomePageDiv = styled.div`
   height: 100vh;
-  background-color: #db6450;
-  color: white;
-  padding-top: 80px;
-`;
+  background-image: url(${BGimg});
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+  padding-top: 60px;
+  `;
 
 const Select = styled.select`
   padding: 10px;

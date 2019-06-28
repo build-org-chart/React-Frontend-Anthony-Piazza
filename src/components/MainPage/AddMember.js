@@ -8,20 +8,20 @@ import { addEmployeeToCompany } from "../../actions";
 import BGimg from "../../imgs/triangles.jpg";
 
 const FormContainer = styled.div`
-  height: 100vh;
-  background-image: url(${BGimg});
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 100%;
-  padding-top: 280px;
-`;
+  display: flex;
+  background-color: #36393f;
+  margin: 0px 35% 0px 35%;
+  padding: 0px 0%;
+  border-radius: 10px;
+  opacity:0.95;
+`
 
 const SignUpForm = styled.form`
   display: flex;
   flex-direction: column;
   width: 100%;
   margin: 20px 10% 0px 10%;
-  height: 160px;
+  height: 310px;
   padding: 5px 1% 2px 1%;
   border-radius: 10px;
 `;
@@ -48,6 +48,11 @@ border-radius: 10px;
 background-color: #db6450;
 color: white;
 padding: 10px;
+:hover{
+  background-color: #db6450;
+  color: white;
+  cursor: pointer;
+}
 `;
 
 class AddMember extends React.Component {

@@ -15,6 +15,15 @@ const FormContainer = styled.div`
   border-radius: 10px;
   opacity:0.95;
 `
+const SignUpForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 20px 10% 0px 10%;
+  height: 160px;
+  padding: 5px 1% 2px 1%;
+  border-radius: 10px;
+`;
 
 const Select = styled.select`
   padding: 10px;
@@ -29,15 +38,7 @@ const Select = styled.select`
   }
 `;
 
-const SignUpForm = styled.form`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  margin: 20px 10% 0px 10%;
-  height: 160px;
-  padding: 5px 1% 2px 1%;
-  border-radius: 10px;
-`;
+
 
 const Input = styled.input`
   padding: 10px;
@@ -52,6 +53,11 @@ const Button = styled.button`
   background-color: #db6450;
   color: white;
   padding: 10px;
+  :hover{
+    background-color: #db6450;
+    color: white;
+    cursor: pointer;
+  }
 `;
 
 const ContentDiv = styled.div`

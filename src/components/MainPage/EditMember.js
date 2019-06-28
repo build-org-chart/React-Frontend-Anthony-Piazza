@@ -5,12 +5,34 @@ import { connect } from "react-redux";
 
 import { editEmployee } from "../../actions";
 
+import BGimg from "../../imgs/triangles.jpg";
+
 const FormContainer = styled.div`
-  display: flex;
+display: flex;
+background-color: #36393f;
+margin: 0px 35% 0px 35%;
+padding: 0px 0%;
+border-radius: 10px;
+opacity:0.95;
+`
+
+const SignUpForm = styled.form`
+display: flex;
+flex-direction: column;
+width: 100%;
+margin: 20px 10% 0px 10%;
+height: 370px;
+padding: 5px 1% 2px 1%;
+border-radius: 10px;
+`;
+
+const ContentDiv = styled.div`
   height: 100vh;
-  background-color: #db6450;
-  color: white;
-  padding-top: 20px;
+  background-image: url(${BGimg});
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+  padding-top: 260px;
 `;
 
 const Select = styled.select`
@@ -25,18 +47,6 @@ const Select = styled.select`
     color: grey;
   }
 `;
-
-const SignUpForm = styled.form`
-  display: flex;
-  flex-direction: column;
-  margin: 50px 35% 0px 35%;
-  width: 50%;
-  background-color: white;
-  height: 450px;
-  padding: 25px 1% 0px 1%;
-  border-radius: 10px;
-`;
-
 const Input = styled.input`
   padding: 10px;
   margin-top: 10px;
@@ -50,6 +60,11 @@ const Button = styled.button`
   background-color: #db6450;
   color: white;
   padding: 10px;
+  :hover{
+    background-color: #db6450;
+    color: white;
+    cursor: pointer;
+  }
 `;
 class EditMember extends React.Component {
   constructor(props) {
@@ -104,6 +119,7 @@ class EditMember extends React.Component {
   };
   render() {
     return (
+    <ContentDiv>
       <FormContainer>
         <SignUpForm>
           <Select
@@ -198,6 +214,7 @@ class EditMember extends React.Component {
           <Button onClick={this.handleEdit}> Edit Member</Button>
         </SignUpForm>
       </FormContainer>
+    </ContentDiv>
     );
   }
 }
