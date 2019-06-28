@@ -1,16 +1,16 @@
 import axios from "axios";
 
 // interceptor to add auth header to all requests
-axios.interceptors.request.use(
-  function(config) {
-    config.headers["Authorization"] = localStorage.getItem("token") || "";
-    return config;
-  },
-  function(error) {
-    // Do something with request error
-    return Promise.reject(error);
-  }
-);
+// axios.interceptors.request.use(
+//   function(config) {
+//     config.headers["Authorization"] = localStorage.getItem("token") || "";
+//     return config;
+//   },
+//   function(error) {
+//     // Do something with request error
+//     return Promise.reject(error);
+//   }
+// );
 
 export const LOGIN_START = "LOGIN_START";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
@@ -56,6 +56,7 @@ export const SEND_REQUESTS_START = "SEND_REQUESTS_START";
 export const SEND_REQUESTS_SUCCESS = "SEND_REQUESTS_SUCCESS";
 
 const URLEndpoint = "https://org-chart-backend-temp-deploy.herokuapp.com";
+// const URLEndpoint = "http://localhost:5000";
 
 export const login = creds => dispatch => {
   dispatch({ type: LOGIN_START });

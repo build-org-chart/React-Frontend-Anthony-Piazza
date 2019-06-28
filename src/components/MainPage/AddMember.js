@@ -5,23 +5,34 @@ import { connect } from "react-redux";
 
 import { addEmployeeToCompany } from "../../actions";
 
+import BGimg from "../../imgs/triangles.jpg";
+
 const FormContainer = styled.div`
-  display: flex;
   height: 100vh;
-  background-color: #db6450;
-  color: white;
-  padding-top: 20px;
+  background-image: url(${BGimg});
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+  padding-top: 280px;
 `;
 
 const SignUpForm = styled.form`
   display: flex;
   flex-direction: column;
-  margin: 50px 35% 0px 35%;
-  width: 50%;
-  background-color: white;
-  height: 450px;
-  padding: 25px 1% 0px 1%;
+  width: 100%;
+  margin: 20px 10% 0px 10%;
+  height: 160px;
+  padding: 5px 1% 2px 1%;
   border-radius: 10px;
+`;
+
+const ContentDiv = styled.div`
+  height: 100vh;
+  background-image: url(${BGimg});
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+  padding-top: 280px;
 `;
 
 const Input = styled.input`
@@ -32,12 +43,13 @@ const Input = styled.input`
 `;
 
 const Button = styled.button`
-  margin-top: 10px;
-  border-radius: 10px;
-  background-color: #db6450;
-  color: white;
-  padding: 10px;
+margin-top: 10px;
+border-radius: 10px;
+background-color: #db6450;
+color: white;
+padding: 10px;
 `;
+
 class AddMember extends React.Component {
   constructor(props) {
     super(props);
@@ -61,47 +73,49 @@ class AddMember extends React.Component {
   };
   render() {
     return (
-      <FormContainer>
-        <SignUpForm>
-          <Input
-            placeholder="Username"
-            onChange={this.handleChange}
-            type="text"
-            value={this.state.username}
-            name="username"
-          />
-          <Input
-            placeholder="Email"
-            onChange={this.handleChange}
-            type="text"
-            value={this.state.email}
-            name="email"
-          />
-          <Input
-            placeholder="Password"
-            onChange={this.handleChange}
-            type="text"
-            value={this.state.password}
-            name="password"
-          />
-          <Input
-            placeholder="Full Name"
-            onChange={this.handleChange}
-            type="text"
-            value={this.state.full_name}
-            name="full_name"
-          />
-          <Input
-            placeholder="Your Title"
-            onChange={this.handleChange}
-            type="text"
-            value={this.state.title}
-            name="title"
-          />
+      <ContentDiv>
+        <FormContainer>
+          <SignUpForm>
+            <Input
+              placeholder="Username"
+              onChange={this.handleChange}
+              type="text"
+              value={this.state.username}
+              name="username"
+            />
+            <Input
+              placeholder="Email"
+              onChange={this.handleChange}
+              type="text"
+              value={this.state.email}
+              name="email"
+            />
+            <Input
+              placeholder="Password"
+              onChange={this.handleChange}
+              type="text"
+              value={this.state.password}
+              name="password"
+            />
+            <Input
+              placeholder="Full Name"
+              onChange={this.handleChange}
+              type="text"
+              value={this.state.full_name}
+              name="full_name"
+            />
+            <Input
+              placeholder="Your Title"
+              onChange={this.handleChange}
+              type="text"
+              value={this.state.title}
+              name="title"
+            />
 
-          <Button onClick={this.handleAddMember}>Add Member</Button>
-        </SignUpForm>
-      </FormContainer>
+            <Button onClick={this.handleAddMember}>Add Member</Button>
+          </SignUpForm>
+        </FormContainer>
+      </ContentDiv>
     );
   }
 }
