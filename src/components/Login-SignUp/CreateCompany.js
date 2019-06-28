@@ -9,23 +9,32 @@ import { history } from "../../helpers/history";
 const Button = styled.button`
   margin-top: 10px;
   border-radius: 10px;
-  background-color: #db6450;
+  background-color: #36393f;
   color: white;
   padding: 10px;
-  border: 1px solid grey;
+  border: 1px solid white;
+  :hover{
+    background-color: #db6450;
+    color: white;
+    cursor: pointer;
+  }
 `;
+
+const FormContainer = styled.div`
+  display: flex;
+`;
+
 const CreateCompanyForm = styled.form`
   display: flex;
   flex-direction: column;
-  margin: 50px 35% 0px 35%;
-  width: 30%;
-  background-color: white;
-  height: 120px;
-  padding: 25px 1% 0px 1%;
+  width: 100%;
+  margin: 20px 10% 0px 10%;
+  height: 110px;
+  padding: 7px 1% 0px 1%;
   border-radius: 10px;
 `;
 const Input = styled.input`
-  padding: 11px 10px 11px 10px;
+  padding: 10px;
   margin-top: 10px;
   border-radius: 10px;
   border: 1px solid grey;
@@ -52,16 +61,18 @@ class CreateCompany extends React.Component {
   };
   render() {
     return (
-      <CreateCompanyForm>
-        <Input
-          type="text"
-          name="name"
-          value={this.state.name}
-          onChange={this.handleChange}
-          placeholder="Company Name"
-        />
-        <Button onClick={this.handleCreate}>Create My Company Chart</Button>
-      </CreateCompanyForm>
+      <FormContainer>
+        <CreateCompanyForm>
+          <Input
+            type="text"
+            name="name"
+            value={this.state.name}
+            onChange={this.handleChange}
+            placeholder="Company Name"
+          />
+          <Button onClick={this.handleCreate}>Create My Company Chart</Button>
+        </CreateCompanyForm>
+      </FormContainer>
     );
   }
 }
@@ -77,3 +88,53 @@ export default connect(
   mapStateToProps,
   { history, createCompany }
 )(CreateCompany);
+
+
+// @-webkit-keyframes tracking-in-expand{
+//   0%{
+//     letter-spacing:-.5em;
+//     opacity:0;
+//   }
+//   40%{
+//     opacity:.6;
+//   }
+//   100%{
+//     opacity:1;
+//   }
+// }
+// @keyframes tracking-in-expand{
+//   0%{
+//     letter-spacing:-.5em;
+//     opacity:0;
+//   }
+//   40%{
+//     opacity:.6;
+//   }
+//   100%{
+//     opacity:1;
+//   }
+// }
+// @-webkit-keyframes tracking-out-contract{
+//   0%{
+//     opacity:1;
+//   }
+//   50%{
+//     opacity:1;
+//   }
+//   100%{
+//     letter-spacing:-.5em;
+//     opacity:0;
+//   }
+// }
+// @keyframes tracking-out-contract{
+//   0%{
+//     opacity:1;
+//   }
+//   50%{
+//     opacity:1;
+//   }
+//   100%{
+//     letter-spacing:-.5em;
+//     opacity:0;
+//   }
+// }

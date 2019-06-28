@@ -46,11 +46,11 @@ class Org extends Component {
   componentDidMount() {
     setTimeout(() => {
       this.props.getCompanyEmployees(this.props.company_id);
-    }, 10);
+    }, 3000);
 
     setTimeout(() => {
       this.props.getDepartments(this.props.company_id);
-    }, 10);
+    }, 3000);
 
     setTimeout(() => {
       // console.log(this.props.employees);
@@ -89,11 +89,11 @@ class Org extends Component {
           });
         }
       });
-    }, 10);
+    }, 3000);
 
     setTimeout(() => {
       this.props.getRequests();
-    }, 10);
+    }, 3000);
   }
 
   MyNodeComponent = ({ node }) => {

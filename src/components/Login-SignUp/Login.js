@@ -10,10 +10,9 @@ import "./Login.css";
 const LoginForm = styled.form`
   display: flex;
   flex-direction: column;
-  margin: 50px 35% 0px 35%;
-  width: 50%;
-  background-color: white;
-  height: 170px;
+  width: 100%;
+  margin: 40px 10% -40px 10%;
+  height: 310px;
   padding: 25px 1% 0px 1%;
   border-radius: 10px;
 `;
@@ -33,13 +32,13 @@ const Button = styled.button`
   margin-top: 10px;
   border-radius: 10px;
   background-color: #36393f;
-  border: 1px solid white;
   color: white;
   padding: 10px;
-  border: 1px solid grey;
+  border: 1px solid white;
   :hover{
     background-color: #db6450;
     color: white;
+    cursor: pointer;
   }
 `;
 
@@ -90,7 +89,7 @@ class Login extends React.Component {
             value={this.state.password}
             name="password"
           />
-          <Button onClick={this.handleLogin}>Login</Button>
+          <Button onClick={this.handleLogin}>SIGN IN</Button>
         </LoginForm>
       </FormContainer>
     );

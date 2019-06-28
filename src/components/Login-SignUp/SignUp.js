@@ -46,9 +46,9 @@ const Button = styled.button`
   border: 1px solid white;
   color: white;
   padding: 10px;
-  border: 1px solid grey;
   :hover{
     background-color: #db6450;
+    cursor: pointer;
     color: white;
   }
 `;
@@ -153,7 +153,7 @@ class SignUp extends React.Component {
             name="password"
           />
 
-          <Button onClick={this.handleLogin}>Register</Button>
+          <Button onClick={this.handleLogin}>REGISTER</Button>
         </SignUpForm>
       </FormContainer>
     );
