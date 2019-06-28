@@ -5,13 +5,16 @@ import { connect } from "react-redux";
 
 import { createDepartment } from "../../actions";
 
+import BGimg from "../../imgs/triangles.jpg";
+
 const FormContainer = styled.div`
   display: flex;
-  height: 100vh;
-  background-color: #db6450;
-  color: white;
-  padding-top: 20px;
-`;
+  background-color: #36393f;
+  margin: 0px 35% 0px 35%;
+  padding: 0px 0%;
+  border-radius: 10px;
+  opacity:0.95;
+`
 
 const Select = styled.select`
   padding: 10px;
@@ -29,11 +32,10 @@ const Select = styled.select`
 const SignUpForm = styled.form`
   display: flex;
   flex-direction: column;
-  margin: 50px 35% 0px 35%;
-  width: 50%;
-  background-color: white;
-  height: 450px;
-  padding: 25px 1% 0px 1%;
+  width: 100%;
+  margin: 20px 10% 0px 10%;
+  height: 160px;
+  padding: 5px 1% 2px 1%;
   border-radius: 10px;
 `;
 
@@ -51,6 +53,16 @@ const Button = styled.button`
   color: white;
   padding: 10px;
 `;
+
+const ContentDiv = styled.div`
+  height: 100vh;
+  background-image: url(${BGimg});
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
+  padding-top: 280px;
+`;
+
 class AddDepartment extends React.Component {
   constructor(props) {
     super(props);
@@ -76,37 +88,39 @@ class AddDepartment extends React.Component {
   };
   render() {
     return (
-      <FormContainer>
-        <SignUpForm>
-          <Input
-            placeholder="Department"
-            onChange={this.handleChange}
-            type="text"
-            value={this.state.department}
-            name="department"
-          />
+      <ContentDiv>
+        <FormContainer>
+          <SignUpForm>
+            <Input
+              placeholder="Department"
+              onChange={this.handleChange}
+              type="text"
+              value={this.state.department}
+              name="department"
+            />
 
-          <Select
-            required
-            name="id"
-            value={this.state.id}
-            onChange={this.handleChange}
-          >
-            <option value="" disabled selected>
-              Select an Department Head...
-            </option>
-            {this.props.employees.map(employee => {
-              return (
-                <option name="id" value={employee.id} key={employee.id}>
-                  {employee.full_name}
-                </option>
-              );
-            })}
-          </Select>
+            <Select
+              required
+              name="id"
+              value={this.state.id}
+              onChange={this.handleChange}
+            >
+              <option value="" disabled selected>
+                Select an Department Head...
+              </option>
+              {this.props.employees.map(employee => {
+                return (
+                  <option name="id" value={employee.id} key={employee.id}>
+                    {employee.full_name}
+                  </option>
+                );
+              })}
+            </Select>
 
-          <Button onClick={this.handleSubmit}>Name Your Department</Button>
-        </SignUpForm>
-      </FormContainer>
+            <Button onClick={this.handleSubmit}>Name Your Department</Button>
+          </SignUpForm>
+        </FormContainer>
+      </ContentDiv>
     );
   }
 }

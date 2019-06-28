@@ -22,6 +22,7 @@ const TagLine = styled.h3`
   font-weight: lighter;
   font-size: .77rem;
   padding-bottom: 80px;
+  @-webkit-keyframes slide-in-left{0%{-webkit-transform:translateX(-1000px);transform:translateX(-1000px);opacity:0}100%{-webkit-transform:translateX(0);transform:translateX(0);opacity:1}}@keyframes slide-in-left{0%{-webkit-transform:translateX(-1000px);transform:translateX(-1000px);opacity:0}100%{-webkit-transform:translateX(0);transform:translateX(0);opacity:1}}
 `;
 
 const Instruction = styled.p`
@@ -38,6 +39,7 @@ const UserType = styled(NavLink)`
   margin: 10px 2% 0px 2%;
   color: white;
   font-weight: light;
+  font-size: .8rem;
   border: 1px white solid;
   border-radius: 10px;
   :hover {
@@ -51,6 +53,7 @@ const MenuDiv = styled.div`
   margin: 0px 35%;
   padding: 20px 0%;
   border-radius: 10px;
+  opacity:0.95;
 `
 
 class LoginPage extends React.Component {
@@ -79,15 +82,15 @@ class LoginPage extends React.Component {
   render() {
     return (
       <LoginPageDiv className="img">
-        <img src="../../imgs/logo.jpg" alt="Logo" />
+        <img className="animation" src="../../imgs/logo.jpg" alt="Logo" />
         <TagLine>A Better Way to Make Decisions.</TagLine>
         <MenuDiv>  
-          <Instruction>*SELECT AN OPTION TO CONTINUE*</Instruction>
+          <Instruction>SELECT AN OPTION TO CONTINUE</Instruction>
           <UserType activeClassName="user-type" to="/user/signup">
-            New User
+            Sign Up
           </UserType>
           <UserType activeClassName="user-type" to="/user/login">
-            Returning User
+            Sign In
           </UserType>
           <Route path="/user/signup" component={SignUp} />
           <Route path="/user/login" component={Login} />

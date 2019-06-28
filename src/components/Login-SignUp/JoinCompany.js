@@ -21,21 +21,29 @@ const Select = styled.select`
 const Button = styled.button`
   margin-top: 10px;
   border-radius: 10px;
-  background-color: #db6450;
+  background-color: #36393f;
   color: white;
   padding: 10px;
-  border: 1px solid grey;
+  border: 1px solid white;
+  :hover{
+    background-color: #db6450;
+    color: white;
+    cursor: pointer;
+  }
 `;
 
 const JoinCompanyForm = styled.form`
   display: flex;
   flex-direction: column;
-  margin: 50px 35% 0px 35%;
-  width: 30%;
-  background-color: white;
-  height: 120px;
-  padding: 25px 1% 0px 1%;
+  width: 100%;
+  margin: 20px 10% 0px 10%;
+  height: 110px;
+  padding: 5px 1% 2px 1%;
   border-radius: 10px;
+`;
+
+const FormContainer = styled.div`
+  display: flex;
 `;
 
 class JoinCompany extends React.Component {
@@ -73,26 +81,28 @@ class JoinCompany extends React.Component {
   };
   render() {
     return (
-      <JoinCompanyForm>
-        <Select
-          required
-          name="name"
-          value={this.state.name}
-          onChange={this.handleChange}
-        >
-          <option value="" disabled selected>
-            Select your Company...
-          </option>
-          {this.props.companies.map(company => {
-            return (
-              <option name="name" value={company.name} key={company.id}>
-                {company.name}
-              </option>
-            );
-          })}
-        </Select>
-        <Button onClick={this.handleJoin}>View My Company Chart</Button>
-      </JoinCompanyForm>
+      <FormContainer>
+        <JoinCompanyForm>
+          <Select
+            required
+            name="name"
+            value={this.state.name}
+            onChange={this.handleChange}
+          >
+            <option value="" disabled selected>
+              Select your Company...
+            </option>
+            {this.props.companies.map(company => {
+              return (
+                <option name="name" value={company.name} key={company.id}>
+                  {company.name}
+                </option>
+              );
+            })}
+          </Select>
+          <Button onClick={this.handleJoin}>View My Company Chart</Button>
+        </JoinCompanyForm>
+      </FormContainer>
     );
   }
 }
