@@ -4,6 +4,7 @@ import styled from 'styled-components';
 
 import CreateCompany from './CreateCompany';
 import JoinCompany from './JoinCompany';
+import { colors } from "../../styles";
 
 const AddCompanyPageDiv = styled.div`
     height: 100vh;

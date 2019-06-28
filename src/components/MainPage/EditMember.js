@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { connect } from "react-redux";
 
 import { editEmployee } from "../../actions";
+import { colors } from "../../styles";
 
 const FormContainer = styled.div`
   display: flex;

@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { history } from "../../helpers/history";
 
 import { getAllCompanies, addUserToCompany } from "../../actions";
+import { colors } from "../../styles";
 
 const Select = styled.select`
   padding: 10px;

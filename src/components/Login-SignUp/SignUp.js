@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 
 import { login, signUp } from "../../actions";
 import { history } from "../../helpers/history";
+import { colors } from "../../styles";
 
 const FormContainer = styled.div`
   display: flex;

@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { createCompany } from "../../actions/index.js";
 
 import { history } from "../../helpers/history";
+import { colors } from "../../styles";
 
 const Button = styled.button`
   margin-top: 10px;

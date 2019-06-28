@@ -1,14 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-
 import { connect } from "react-redux";
-
 import { addEmployeeToCompany } from "../../actions";
+import { colors } from "../../styles";
 
 const FormContainer = styled.div`
   display: flex;
   height: 100vh;
-  background-color: #db6450;
+  background-color: white;
   color: white;
   padding-top: 20px;
 `;
@@ -18,7 +17,7 @@ const SignUpForm = styled.form`
   flex-direction: column;
   margin: 50px 35% 0px 35%;
   width: 50%;
-  background-color: white;
+  background-color: ${colors.whiteLinen};
   height: 450px;
   padding: 25px 1% 0px 1%;
   border-radius: 10px;
@@ -28,16 +27,18 @@ const Input = styled.input`
   padding: 10px;
   margin-top: 10px;
   border-radius: 10px;
-  border: 1px solid grey;
+  border: 1px solid ${colors.whiteLinen};
 `;
 
 const Button = styled.button`
   margin-top: 10px;
   border-radius: 10px;
-  background-color: #db6450;
+  background-color: ${colors.redDamask};
   color: white;
   padding: 10px;
+  background-color: ${colors.redDamask};
 `;
+
 class AddMember extends React.Component {
   constructor(props) {
     super(props);

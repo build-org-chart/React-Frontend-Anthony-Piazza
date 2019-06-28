@@ -5,6 +5,7 @@ import styled from "styled-components";
 import SignUp from "./SignUp";
 import Login from "./Login";
 import "./Login.css";
+import { colors } from "../../styles";
 // import BGimg from "../../imgs/brickwall.jpg";
   // background-image: url(${BGimg});
   // background-repeat: no-repeat;

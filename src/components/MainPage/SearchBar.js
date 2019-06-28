@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import {connect} from 'react-redux';
+import { colors } from "../../styles";
 
 const Header = styled.div`
   margin-left: 10%;

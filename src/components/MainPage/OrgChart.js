@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import OrgChart from "react-orgchart";
 import styled from "styled-components";
+import { colors } from "../../styles";
 
 import {
   getCompanyEmployees,
