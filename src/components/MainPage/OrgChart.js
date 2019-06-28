@@ -13,11 +13,12 @@ import { connect } from "react-redux";
 import "./OrgChart.css";
 
 const Icon = styled.i`
-  background-color: white;
-  padding: 5px;
   color: #36393f;
   margin-left: 1%;
-  border-radius: 5px;
+  :hover{
+    background-color: #db6450;
+    color: white;
+  }
 `;
 
 const FlexDiv = styled.div`
@@ -28,7 +29,30 @@ const FlexDiv = styled.div`
 const IconContainer = styled.div`
   margin-bottom: 30px;
   margin-top: 0px;
+  margin-right: 50px;
+  background-color: white;
+  border-radius: 10px;
+  font-size: .9rem;
+  font-weight: lighter;
+  padding: 5px;
+  :hover{
+    cursor: pointer;
+    background-color: #db6450;
+    color: white;
+  }
 `;
+
+const H2 = styled.h2`
+  font-size: .7rem;
+  :hover{
+    cursor: pointer;
+  }
+`
+
+const FlexDiv2 = styled.div`
+  display: flex;
+  justify-content: center;
+`
 
 class Org extends Component {
   constructor(props) {
@@ -141,19 +165,30 @@ class Org extends Component {
   render() {
     return (
       <div id="initechOrgChart">
-        <IconContainer>
-          <Icon onClick={this.handleAddMember} className="fas fa-user-plus" />
-          <Icon onClick={this.handleEditMember} className="fas fa-user-edit" />
-          <Icon
-            onClick={this.handleDeleteMember}
-            className="fas fa-user-minus"
-          />
-          <Icon
-            onClick={this.handleAddDepartment}
-            className="fas fa-user-plus"
-          />
-        </IconContainer>
-
+        <FlexDiv2>
+          <IconContainer onClick={this.handleAddMember}>
+            <H2>Add Member</H2>
+            <Icon onClick={this.handleAddMember} className="fas fa-user-plus" />
+          </IconContainer>
+          <IconContainer onClick={this.handleEditMember}>
+            <H2>Edit Member</H2>
+            <Icon onClick={this.handleEditMember} className="fas fa-user-edit" />
+          </IconContainer>
+          <IconContainer onClick={this.handleDeleteMember}>  
+          <H2>Delete Member</H2>
+            <Icon
+              onClick={this.handleDeleteMember}
+              className="fas fa-user-minus"
+            />
+          </IconContainer> 
+          <IconContainer onClick={this.handleAddDepartment}> 
+            <H2>Add Department</H2>  
+            <Icon
+              onClick={this.handleAddDepartment}
+              className="fas fa-user-plus"
+            />
+          </IconContainer>
+        </FlexDiv2>
         <OrgChart
           tree={this.state.initechOrg}
           NodeComponent={this.MyNodeComponent}

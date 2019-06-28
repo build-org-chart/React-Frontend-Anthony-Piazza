@@ -1,22 +1,25 @@
 .initechNode {
-    border: solid 1px white;
+    border: solid 1px black;
     border-radius: 3px;
     padding: 15px 5% 15px 5%;
     width: 50%;
     display: inline-block;
+    background-color:black;
+    color: white;
 }
 
 .expandedinitechNode {
-    background: blue;
+    background-color: red;
     border: solid 1px white;
     border-radius: 3px;
     padding: 15px 5% 15px 5%;
     width: 50%;
     display: inline-block;
+    color: white;
 }
 
 #initechOrgChart .orgNodeChildGroup .nodeGroupLineVerticalMiddle {
-    border-right: solid 1px white;
+    border-right: solid 1px black;
     border-radius: 5px;
 }
 
@@ -26,7 +29,7 @@
 }
 
 #initechOrgChart .nodeLineBorderTop {
-    border-top: solid 1px white;
+    border-top: solid 1px black;
 }
 
 .reactOrgChart {
